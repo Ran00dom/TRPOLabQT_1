@@ -32,27 +32,31 @@ Win::Win(QWidget *parent):QWidget(parent)
     vLayout2->addWidget(nextButton);
     vLayout2->addWidget(exitButton);
     vLayout2->addStretch();
-    QHBoxLayout *hLayout = new QHBoxLayout(this); // создаем вертикальный блок для элементов
+    QHBoxLayout *hLayout = new QHBoxLayout(this); // создаем горизонтальный блок для элементов
     // добавляем созданые блоки в один
     hLayout->addWidget(frame);
     hLayout->addLayout(vLayout2);
     begin(); // обновляем программу
-    connect(exitButton,SIGNAL(clicked(bool)), // сигнал типа "клик" кнопки exitButton связываем с слотом close() обьекта win
-            this,SLOT(close()));
-    connect(nextButton,SIGNAL(clicked(bool)), // сигнал типа "клик" кнопки nextButton связываем с слотом begin() обьекта win
-            this,SLOT(begin()));
-    connect(inputEdit,SIGNAL(returnPressed()), // сигнал типа "нажатие кнопки" (Этот сигнал издается при использовании клавиши Return или Enter.) текстового поля inputEdit связываем с слотом calc() обьекта win
-            this,SLOT(calc()));
+
+    // Новыя версия сигнально-слотовых соединений
+    connect(exitButton,&QPushButton::clicked, // сигнал типа "клик" кнопки exitButton связываем с слотом close() обьекта win
+            this, &Win::close);
+    connect(nextButton,&QPushButton::clicked, // сигнал типа "клик" кнопки nextButton связываем с слотом begin() обьекта win
+            this,&Win::begin);
+    connect(inputEdit,&QLineEdit::returnPressed, // сигнал типа "нажатие кнопки" (Этот сигнал издается при использовании клавиши Return или Enter.) текстового поля inputEdit связываем с слотом calc() обьекта win
+            this,&Win::calc);
 }
 void Win::begin() // обновление интерфейса программы
 {
     inputEdit->clear();
+    inputEdit->setEnabled(true);
+
     nextButton->setEnabled(false);
     nextButton->setDefault(false);
-    inputEdit->setEnabled(true);
     outputLabel->setVisible(false);
     outputEdit->setVisible(false);
     outputEdit->setEnabled(false);
+
     inputEdit->setFocus();
 }
 void Win::calc() // вычисление значений
