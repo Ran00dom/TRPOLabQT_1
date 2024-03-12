@@ -9,7 +9,9 @@ Window::Window()
  QVBoxLayout *layout = new QVBoxLayout(this);
  layout->addWidget(area);
  layout->addWidget(btn);
- connect(btn, SIGNAL(clicked(bool)),this,SLOT(close()));
+
+ // Новый вид сигнально-слотовых соединений
+ connect(btn,&QPushButton::clicked,this,&Window::close);
 };
 
 

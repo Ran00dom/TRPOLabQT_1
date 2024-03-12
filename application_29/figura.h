@@ -6,7 +6,7 @@
 class Figura // базовый класс фигуры
 {
 protected:
-    int x,y,halflen,dx,dy,r; // атрибуты, halflen - размер фигуры, x,y - центр, dx,dy - новая точка
+    int x,y,halflen,dx,dy,r; // атрибуты, halflen - размер фигуры, x,y - центр, dx,dy - точка вращения
     virtual void draw(QPainter *Painter)=0; // рисует фигуру
 public:
     Figura(int X,int Y,int Halflen): // конструктор

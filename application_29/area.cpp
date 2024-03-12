@@ -6,16 +6,16 @@ Area::Area(QWidget *parent):QWidget(parent) // конструктор
     myrect=new MyRect(220,100,50);
     alpha=0;
 }
-void Area::showEvent(QShowEvent *)
+void Area::showEvent(QShowEvent *) // событие отображения виджета
 {
-    myTimer=startTimer(50); // создать таймер
+    myTimer=startTimer(50); // создать таймер и сохранить его id в myTimer
 }
-void Area::paintEvent(QPaintEvent *)
+void Area::paintEvent(QPaintEvent *) // событие обнавления холста
 {
     QPainter painter(this); // создание пера
     painter.setPen(Qt::red); // установка цвета пера
-    myline->move(alpha,&painter); // вращает фигуру
-    myrect->move(alpha*(-0.5),&painter); // вращает фигуру
+    myline->move(alpha,&painter); // отрисовка фигуры с наклоном
+    myrect->move(alpha*(-0.5),&painter); // отрисовка фигуры с наклоном
 }
 
 void Area::timerEvent(QTimerEvent *event)
