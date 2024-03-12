@@ -20,8 +20,9 @@ public slots:
  {
  QString str=text(); // записываем текст из текстового поля
  int r=str.toInt(); // переводим в int
- if (r!=0 && r%5 ==0) emit tick_signal(); // если значение не 0 и кратно 5 вызвать сигнал tick_signal
+ // исправлен слот, теперь сигнал активируется когда в counter число кратное 5
  r++;
+ if (r!=0 && r%5 ==0) emit tick_signal(); // если значение кратно 5 вызвать сигнал tick_signal
  str.setNum(r);
  setText(str); // устанавливаем новый текст в поле
  }
