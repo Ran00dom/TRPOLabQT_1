@@ -30,6 +30,10 @@ Win::Win(QWidget *parent):QWidget(parent)
  layout4->addLayout(layout2);
  layout4->addLayout(layout3);
 
+ // Блокировка Counter
+ edit1->setEnabled(false);
+ edit2->setEnabled(false);
+
  // связь сигнала нажатия кнопки и слота закрытия окна
  // Новый вид сигнально-слотовой связи.
  connect(calcbutton,&QPushButton::clicked,
